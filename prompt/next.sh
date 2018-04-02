@@ -1,12 +1,18 @@
 #!/bin/bash
 
-function next_file(){
-    echo "next"
+function execute(){
+    echo $1
 }
 
-function repeat_file(){
-    echo "repeat"
-}
+TARGET_DIR=$1
+
+echo ${TARGET_DIR}
+
+TARGET_FILES=($(find ${TARGET_DIR} -maxdepth 1 -type f | sort))
+
+FILE_INDEX=0
+            
+execute ${TARGET_FILES[${FILE_INDEX}]}
 
 while :
 do
@@ -14,9 +20,10 @@ do
     read value
     case ${value} in
         [nN] )
-            next_file ;;
+            (( FILE_INDEX++ ))
+            execute ${TARGET_FILES[${FILE_INDEX}]} ;;
         [rR] )
-            repeat_file ;;
+            execute ${TARGET_FILES[${FILE_INDEX}]} ;;
         [qQ] )
             echo "bye."
             break ;;

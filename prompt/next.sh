@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eu
+
 function execute(){
     echo $1
 }

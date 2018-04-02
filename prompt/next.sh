@@ -22,7 +22,7 @@ do
     read value
     case ${value} in
         [nN] )
-            (( FILE_INDEX++ ))
+            FILE_INDEX=$((FILE_INDEX + 1))
             execute ${TARGET_FILES[${FILE_INDEX}]} ;;
         [rR] )
             execute ${TARGET_FILES[${FILE_INDEX}]} ;;
